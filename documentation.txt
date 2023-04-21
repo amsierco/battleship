@@ -1,0 +1,35 @@
+~~~Webpack~~~
+file: webpack.config.js
+docs general: https://webpack.js.org/concepts/ 
+https://webpack.js.org/guides/getting-started/#basic-setup
+
+docs css: https://webpack.js.org/guides/asset-management/ 
+install: npm install --save-dev style-loader css-loader
+
+docs dev: https://webpack.js.org/guides/development/
+run: npx webpack --watch
+
+~~~Visual Studio Code ESLint~~~
+docs: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+install: Ctrl+p ext install dbaeumer.vscode-eslint
+
+~~~Visual Studio Code Prettier~~~
+docs: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+install: Ctrl+p ext install esbenp.prettier-vscode
+
+~~~Jest testing~~~
+config file: jest.config.js
+docs: https://jestjs.io/docs/getting-started
+docs Jest + Webpack: https://jestjs.io/docs/webpack
+docs Jest + Babel: https://jestjs.io/docs/getting-started#using-babel
+install: 
+    npm install --save-dev jest
+    jest --init
+    Babel: npm install --save-dev babel-jest @babel/core @babel/preset-env
+info: 
+    Test files must include *.test.js
+    &#x2713; Check mark Unicode
+run: npm test
+
+~~~Babel~~~
+file: .babelrc
