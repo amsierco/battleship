@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
     entry: [
+        './src/Ship.js',
         './src/testing/Ship.test.js',
         ],
     output: {
