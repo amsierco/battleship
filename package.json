@@ -1,6 +1,6 @@
 {
   "scripts":{
-    "test": "jest",
+    "test": "clear && jest",
     "watch": "webpack --watch"
   },
   "devDependencies": {
