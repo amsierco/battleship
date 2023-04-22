@@ -15,7 +15,7 @@ export const GameManager = (() => {
     for(let i=1; i<6; i++){
         let randRow = Math.floor(Math.random() * 6 + 0);
         let randCol = Math.floor(Math.random() * 6 + 0);
-        let randRot = Math.floor(Math.random()) > 0 ? randRot = 90 : randRot = 0;
+        let randRot = Math.floor(Math.random() * 1) != 0 ? 90 : 0;
         let ship = Ship(i);
         while(playerBoard.placeShip(ship, randRot, randRow, randCol) == false){
             randRow = Math.floor(Math.random() * 6 + 0);

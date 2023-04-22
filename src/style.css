@@ -1,0 +1,27 @@
+body{
+    --tileSize: 50px;
+}
+
+.gameSpace{
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    min-width: 100wh;
+    background-color: black;
+}
+
+.gameBoard{
+    border: 2px solid blue;
+    display: grid;
+    grid-template-columns: repeat(7, var(--tileSize));
+    grid-template-rows: repeat(7, var(--tileSize));
+    min-width: fit-content;
+    min-height: fit-content;
+}
+
+.gameBoard>div{
+    border: 1px solid blue;
+    min-width: repeat(7, var(--tileSize));
+    min-height: repeat(7, var(--tileSize));
+}
