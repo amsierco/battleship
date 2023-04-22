@@ -3,9 +3,9 @@ const path = require('path');
 module.exports = {
     entry: [
         './src/DOM.js',
+        './src/Player.js',
         './src/Ship.js',
         './src/Board.js',
-        './src/Player.js',
         './src/GameManager.js'
         ],
     output: {

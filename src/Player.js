@@ -1,6 +1,6 @@
 import { GameManager } from "./GameManager";
 
-export const Player = () =>{
+export const Player = (() =>{
     let turn = false;
     function beginTurn(){ turn = true;}
     function endTurn(){ turn = false;}
@@ -10,11 +10,10 @@ export const Player = () =>{
         endTurn,
         get turn(){return turn;}
     }
-}
+})();
 
 export const AI = (() => {
     //let AI = Player;
-
     function randTile(){
         let randRow = Math.floor(Math.random() * 6 + 0);
         let randCol = Math.floor(Math.random() * 6 + 0);
@@ -33,6 +32,7 @@ export const AI = (() => {
         GameManager.playerBoard.attack(tile[0], tile[1]);
         
         // For testing
+        console.log(tile[0]+', '+tile[1]);
         return tile;
     }
 
@@ -41,3 +41,5 @@ export const AI = (() => {
         play
     }
 })();
+
+AI.play();AI.play();AI.play();AI.play();AI.play();AI.play();AI.play();
