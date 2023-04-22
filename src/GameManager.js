@@ -20,6 +20,7 @@ export const GameManager = (() => {
         while(playerBoard.placeShip(ship, randRot, randRow, randCol) == false){
             randRow = Math.floor(Math.random() * 6 + 0);
             randCol = Math.floor(Math.random() * 6 + 0);
+            randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
         }
         playerBoard.placeShip(ship, randRot, randRow, randCol);
         randRow = Math.floor(Math.random() * 6 + 0);
@@ -28,11 +29,12 @@ export const GameManager = (() => {
         while(AIBoard.placeShip(ship, randRot, randRow, randCol) == false){
             randRow = Math.floor(Math.random() * 6 + 0);
             randCol = Math.floor(Math.random() * 6 + 0);
+            randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
         }
         AIBoard.placeShip(ship, randRot, randRow, randCol);
     }
     
-
+    //ERROR
     function takeTurn(){
        AI.play();
     }
@@ -44,3 +46,4 @@ export const GameManager = (() => {
     }
 })();
 
+// GameManager.takeTurn();
