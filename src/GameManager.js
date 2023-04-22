@@ -4,22 +4,25 @@ import { AI } from "./Player"
 import { Ship } from "./Ship";
 
 export const GameManager = (() => {
+
+    // Initialize variables
     let playerBoard = Board();
     let AIBoard = Board();
     playerBoard.createBoard();
     AIBoard.createBoard();
 
-    // Temporarily place random ships
+    // Temporarily place ships randomly
     for(let i=1; i<6; i++){
         let randRow = Math.floor(Math.random() * 6 + 0);
         let randCol = Math.floor(Math.random() * 6 + 0);
+        let randRot = Math.floor(Math.random()) > 0 ? randRot = 90 : randRot = 0;
         let ship = Ship(i);
-        while(playerBoard.placeShip(ship, randRow, randCol) == false){
+        while(playerBoard.placeShip(ship, randRot, randRow, randCol) == false){
             randRow = Math.floor(Math.random() * 6 + 0);
             randCol = Math.floor(Math.random() * 6 + 0);
         }
-        playerBoard.placeShip(ship, randRow, randCol);
-        AIBoard.placeShip(ship, randRow, randCol);
+        playerBoard.placeShip(ship, randRot, randRow, randCol);
+        AIBoard.placeShip(ship, randRot, randRow, randCol);
     }
 
 

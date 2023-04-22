@@ -12,27 +12,52 @@ export const Board = () => {
     }
   }
        
-  // Only for vertical placement
-  function isValid(ship, row, col){
-    for(let i=0; i<ship.length; i++){
-      if(row+i > 6 || col > 6){
-        return false; 
+  /*
+    @param rot -> 0 || 90
+  */
+  function isValid(ship, rot=0, row, col){
+    // Vertical rotation
+    if(rot == 0){
+      for(let i=0; i<ship.length; i++){
+        if(row+i > 6 || col > 6){
+          return false; 
+        }
+        if(board[row+i][col] != null){
+          return false;
+        }
       }
-      if(board[row+i][col] != null){
-        return false;
+    } 
+    // Horizontal rotation
+    else {
+      for(let i=0; i<ship.length; i++){
+        if(row > 6 || col+i > 6){
+          return false; 
+        }
+        if(board[row][col+i] != null){
+          return false;
+        }
       }
     }
     return true;
   }
-       
-  function placeShip(ship, row, col){
-    if(isValid(ship, row, col) == false){return false;}
-    for(let i=0; i<ship.length; i++){
-      board[row+i][col] = ship;
+
+  /*
+    @param rot -> 0 || 90
+  */
+  function placeShip(ship, rot=0, row, col){
+    if(isValid(ship, rot, row, col) == false){return false;}
+    if(rot == 0){
+      for(let i=0; i<ship.length; i++){
+        board[row+i][col] = ship;
+      }
+    } else {
+      for(let i=0; i<ship.length; i++){
+        board[row][col+i] = ship;
+      }
     }
   }
        
-  function receiveAttack(row, col){
+  function attack(row, col){
     if(board[row][col] != null && typeof(board[row][col]) == "object"){
       board[row][col].hit();
       tileData.set((row*10)+col, true);
@@ -46,15 +71,12 @@ export const Board = () => {
     if(row > 6 || row < 0 || col > 6 || col < 0){return;}
     return board[row][col];
   }
-
-  function print(){console.log(board);}
   
   return{
     createBoard,
     isValid,
     placeShip,
-    print,
-    receiveAttack,
+    attack,
     getData,
     get board(){return board;},
     get tileData(){return tileData;}

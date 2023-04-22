@@ -30,13 +30,14 @@ export const AI = (() => {
 
     function play(){
         let tile = randTile();
-        GameManager.playerBoard.receiveAttack(tile[0], tile[1]);
-        //TEMP
+        GameManager.playerBoard.attack(tile[0], tile[1]);
+        
+        // For testing
         return tile;
     }
 
     return {
-        get AI(){return AI;},
+        //get AI(){return AI;},
         play
     }
 })();
