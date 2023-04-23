@@ -1,25 +1,59 @@
-import { GameManager } from "./GameManager";
+import { Board, Ship } from './internal';
 
 export const Player = (() =>{
     let turn = false;
     function beginTurn(){ turn = true;}
     function endTurn(){ turn = false;}
 
+    // Init random Player board
+    const playerBoard = Board(1);
+    for(let i=1; i<6; i++){
+        let randRow = Math.floor(Math.random() * 6 + 0);
+        let randCol = Math.floor(Math.random() * 6 + 0);
+        let randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
+        let ship = Ship(i);
+        while(playerBoard.placeShip(ship, randRot, randRow, randCol) == false){
+            randRow = Math.floor(Math.random() * 6 + 0);
+            randCol = Math.floor(Math.random() * 6 + 0);
+            randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
+        }
+        playerBoard.placeShip(ship, randRot, randRow, randCol);
+    }
+
+
     return {
         beginTurn,
         endTurn,
-        get turn(){return turn;}
+        get turn(){return turn;},
+        playerBoard
     }
 })();
 
 export const AI = (() => {
-    //let AI = Player;
+
+    // Init random AI board
+    const AIBoard = Board(2);
+    for(let i=1; i<6; i++){
+        let randRow = Math.floor(Math.random() * 6 + 0);
+        let randCol = Math.floor(Math.random() * 6 + 0);
+        let randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
+        let ship = Ship(i);
+        while(AIBoard.placeShip(ship, randRot, randRow, randCol) == false){
+            randRow = Math.floor(Math.random() * 6 + 0);
+            randCol = Math.floor(Math.random() * 6 + 0);
+            randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
+        }
+        AIBoard.placeShip(ship, randRot, randRow, randCol);
+    }
+
+
+    // Attacking rand tile selection
     function randTile(){
         let randRow = Math.floor(Math.random() * 6 + 0);
         let randCol = Math.floor(Math.random() * 6 + 0);
 
         // Valid check
-        while(GameManager.playerBoard.tileData.get((randRow*10)+randCol) == true){
+        while(Player.playerBoard.tileData.get((randRow*10)+randCol) == true){
             randRow = Math.floor(Math.random() * 6 + 0);
             randCol = Math.floor(Math.random() * 6 + 0);
         }
@@ -27,19 +61,23 @@ export const AI = (() => {
         return [randRow, randCol];
     }
 
+    // AI play turn
     function play(){
         let tile = randTile();
-        GameManager.playerBoard.attack(tile[0], tile[1]);
+        Player.playerBoard.attack(tile[0], tile[1]);
         
         // For testing
         console.log(tile[0]+', '+tile[1]);
         return tile;
     }
 
+
+
     return {
         //get AI(){return AI;},
-        play
+        play,
+        AIBoard
     }
 })();
-
-AI.play();AI.play();AI.play();AI.play();AI.play();AI.play();AI.play();
+// Attack testing
+//AI.play();AI.play();AI.play();AI.play();AI.play();AI.play();AI.play();

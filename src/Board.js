@@ -1,12 +1,12 @@
-import { DOM } from "./DOM";
+import { DOM } from './internal';
 
-export const Board = () => {
+export const Board = (id=1) => {
   let board = [];
   let tileData = new Map();
-  let ID = null;
+  let ID = id;
     
-  function createBoard(id=1){
-    ID=id;
+  //function createBoard(id=1){
+    //ID=id;
     for(let i=0; i<7; i++){
       board.push([]);
       for(let j=0; j<7; j++){
@@ -14,7 +14,7 @@ export const Board = () => {
         tileData.set((i*10)+j, false);
       }
     }
-  }
+  //}
        
   /*
     @param rot -> 0 || 90
@@ -80,7 +80,7 @@ export const Board = () => {
   }
   
   return{
-    createBoard,
+    //createBoard,
     isValid,
     placeShip,
     attack,
