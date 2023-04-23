@@ -1,12 +1,12 @@
-import { Player } from "../Player";
-import { AI } from "../Player";
-import { GameManager } from "../GameManager";
+import { Player } from "../internal";
+import { AI } from "../internal";
 
-test('AI attack Player', ()=> {
-    let temp = AI.play();
-    if(GameManager.playerBoard.getData(temp[0],temp[1]) != null){
-        expect(GameManager.playerBoard.getData(temp[0],temp[1]).hitCount).toBe(1);
-    } else {
-        expect(GameManager.playerBoard.getData(temp[0],temp[1])).toBeNull;
-    }
+
+
+ 
+
+test('Player attacking', ()=> {
+    expect(AI.AIBoard.tileData.get(0,0)).toBeFalsy;
+    Player.play(0,0);
+    expect(AI.AIBoard.tileData.get(0,0)).toBeTruthy;
 });

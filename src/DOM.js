@@ -19,7 +19,7 @@ const createBoards=(()=>{
 })();
 
 export const DOM = (() => {
-    
+
     function addShip(ship, rot=0, brd=1, row, col){
         let start = document.getElementById(`${brd}${row}${col}`);
         if(rot == 0){

@@ -1,6 +1,6 @@
 import { DOM } from './internal';
 
-export const Board = (id=1) => {
+export const Board = (id) => {
   let board = [];
   let tileData = new Map();
   let ID = id;
@@ -77,7 +77,6 @@ export const Board = (id=1) => {
   }
   
   return{
-    //createBoard,
     isValid,
     placeShip,
     attack,
