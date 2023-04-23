@@ -6,8 +6,8 @@ const createBoards=(()=>{
         board.setAttribute('class', 'gameBoard');
         board.setAttribute('id', `${k}`);
 
-        for(let i=0; i<7; i++){
-            for(let j=0; j<7; j++){
+        for(let i=0; i<10; i++){
+            for(let j=0; j<10; j++){
                 let tile = document.createElement('div');
                 tile.setAttribute('id', `${k}${i}${j}`); // board#,row,col
                 board.appendChild(tile);

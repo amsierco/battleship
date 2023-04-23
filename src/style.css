@@ -12,8 +12,8 @@ body{
 .gameBoard{
     border: 2px solid black;
     display: grid;
-    grid-template-columns: repeat(7, var(--tileSize));
-    grid-template-rows: repeat(7, var(--tileSize));
+    grid-template-columns: repeat(10, var(--tileSize));
+    grid-template-rows: repeat(10, var(--tileSize));
     width: fit-content;
     height: fit-content;
 }
