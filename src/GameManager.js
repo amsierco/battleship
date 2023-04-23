@@ -12,12 +12,36 @@ export const GameManager = (() => {
         });
     }
 
-    //function checkGame(){
-
-    //}
+    function checkGame(){
+        // Check AI board
+        let sunkCounter = 0;
+        for(let s of AI.AIBoard.ships){
+            if(s.isSunk() == true){
+                sunkCounter++;
+                if(sunkCounter >= 5){
+                    gameOver=true;
+                    return true;
+                }
+            }
+        }
+        // Check Player board
+        sunkCounter=0;
+        for(let s of Player.playerBoard.ships){
+            if(s.isSunk() == true){
+                sunkCounter++;
+                if(sunkCounter >= 5){
+                    gameOver=true;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     function takeTurn(tile){
-        if(gameOver == true){return;}
+        
+        if(checkGame() == true){alert('GAME OVER!');return;}
+
         if(Player.turn == true){
             if(tile.target.id == ""){
                 tile = tile.target.parentElement.id;
@@ -28,17 +52,19 @@ export const GameManager = (() => {
             let col = Math.floor(tile%10);
 
             if(AI.AIBoard.tileData.get(`${row}${col}`) == true){
-                alert("duplicate");
                 return;
             }
             Player.play(row, col);
             Player.endTurn();
         }
-        //checkGame();
-        if(gameOver == true){return;}
+
+        if(checkGame() == true){alert('PLAYER WINS!');return;}
+
         AI.play();
+
+        if(checkGame() == true){alert('AI WINS!');return;}
+
         Player.beginTurn();
-        //checkGame();
     }
 
     return {

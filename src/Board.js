@@ -4,6 +4,7 @@ export const Board = (id) => {
   let board = [];
   let tileData = new Map();
   let ID = id;
+  let ships = [];
     
   for(let i=0; i<10; i++){
     board.push([]);
@@ -57,6 +58,7 @@ export const Board = (id) => {
       }
     }
     DOM.addShip(ship, rot, ID, row, col);
+    ships.push(ship);
   }
        
   function attack(row, col){
@@ -82,7 +84,8 @@ export const Board = (id) => {
     attack,
     getData,
     get board(){return board;},
-    get tileData(){return tileData;}
+    get tileData(){return tileData;},
+    get ships(){return ships;}
   }    
 };
     

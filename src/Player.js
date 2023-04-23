@@ -7,7 +7,7 @@ export const Player = (() =>{
 
     // Init random Player board
     const playerBoard = Board(1);
-    for(let i=1; i<6; i++){
+    for(let i=2; i<6; i++){
         let randRow = Math.floor(Math.random() * 10 + 0);
         let randCol = Math.floor(Math.random() * 10 + 0);
         let randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
@@ -18,6 +18,15 @@ export const Player = (() =>{
             randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
         }
         playerBoard.placeShip(ship, randRot, randRow, randCol);
+        if(i==3){
+            ship = Ship(i);
+            while(playerBoard.placeShip(ship, randRot, randRow, randCol) == false){
+                randRow = Math.floor(Math.random() * 10 + 0);
+                randCol = Math.floor(Math.random() * 10 + 0);
+                randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
+            }
+            playerBoard.placeShip(ship, randRot, randRow, randCol);
+        }
     }
 
     // Player play turn
@@ -38,7 +47,7 @@ export const AI = (() => {
 
     // Init random AI board
     const AIBoard = Board(2);
-    for(let i=1; i<6; i++){
+    for(let i=2; i<6; i++){
         let randRow = Math.floor(Math.random() * 10 + 0);
         let randCol = Math.floor(Math.random() * 10 + 0);
         let randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
@@ -49,6 +58,15 @@ export const AI = (() => {
             randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
         }
         AIBoard.placeShip(ship, randRot, randRow, randCol);
+        if(i==3){
+            ship = Ship(i);
+            while(AIBoard.placeShip(ship, randRot, randRow, randCol) == false){
+                randRow = Math.floor(Math.random() * 10 + 0);
+                randCol = Math.floor(Math.random() * 10 + 0);
+                randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
+            }
+            AIBoard.placeShip(ship, randRot, randRow, randCol);
+        }
     }
 
 
