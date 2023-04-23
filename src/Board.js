@@ -5,16 +5,13 @@ export const Board = (id=1) => {
   let tileData = new Map();
   let ID = id;
     
-  //function createBoard(id=1){
-    //ID=id;
-    for(let i=0; i<7; i++){
-      board.push([]);
-      for(let j=0; j<7; j++){
-        board[i].push(null);
-        tileData.set((i*10)+j, false);
-      }
+  for(let i=0; i<7; i++){
+    board.push([]);
+    for(let j=0; j<7; j++){
+      board[i].push(null);
+      tileData.set((i*10)+j, false);
     }
-  //}
+  }
        
   /*
     @param rot -> 0 || 90

@@ -4,6 +4,7 @@ const createBoards=(()=>{
     for(let k=1; k<3; k++){
         let board = document.createElement('div');
         board.setAttribute('class', 'gameBoard');
+        board.setAttribute('id', `${k}`);
 
         for(let i=0; i<7; i++){
             for(let j=0; j<7; j++){

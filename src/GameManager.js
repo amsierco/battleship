@@ -1,54 +1,30 @@
-import { Board, Ship, AI, Player } from './internal';
-
-// const init = (() => {
-//         // Initialize variables
-//         let playerBoard = Board();
-//         let AIBoard = Board();
-//         playerBoard.createBoard(1);
-//         AIBoard.createBoard(2);
-//         //const AI = AI();
-//         //const Player = Player();
-    
-//         // Temporarily place ships randomly
-//         for(let i=1; i<6; i++){
-//             let randRow = Math.floor(Math.random() * 6 + 0);
-//             let randCol = Math.floor(Math.random() * 6 + 0);
-//             let randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
-//             let ship = Ship(i);
-//             while(playerBoard.placeShip(ship, randRot, randRow, randCol) == false){
-//                 randRow = Math.floor(Math.random() * 6 + 0);
-//                 randCol = Math.floor(Math.random() * 6 + 0);
-//                 randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
-//             }
-//             playerBoard.placeShip(ship, randRot, randRow, randCol);
-//             randRow = Math.floor(Math.random() * 6 + 0);
-//             randCol = Math.floor(Math.random() * 6 + 0);
-//             randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
-//             while(AIBoard.placeShip(ship, randRot, randRow, randCol) == false){
-//                 randRow = Math.floor(Math.random() * 6 + 0);
-//                 randCol = Math.floor(Math.random() * 6 + 0);
-//                 randRot = Math.floor(Math.random() * 2 + 0) > 0 ? 90 : 0;
-//             }
-//             AIBoard.placeShip(ship, randRot, randRow, randCol);
-//         }
-
-//         return{
-//             playerBoard,
-//             AIBoard
-//         }
-// })();
+import { AI, Player } from './internal';
 
 export const GameManager = (() => {
     
+    // Player attack event
+    let AIB = document.getElementById('2');
+    for(let div of AIB.children){
+        div.addEventListener('click', (tile) => {
+            if(Player.turn == true){
+                if(tile.target.id == ""){
+                    tile = tile.target.parentElement.id;
+                    takeTurn(tile);
+                } else {
+                    takeTurn(tile.target.id);
+                }
+            }
+        });
+    }
 
-    function takeTurn(){
-       AI.play();
+    function takeTurn(id=null){
+        Player.play(Math.floor(Math.floor(id/10)%10), Math.floor(id%10));
+        Player.endTurn();
+        AI.play();
+        Player.beginTurn();
     }
 
     return {
-        //get playerBoard(){return playerBoard;},
-        //get AIBoard(){return AIBoard;},
         takeTurn
     }
 })();
- GameManager.takeTurn();

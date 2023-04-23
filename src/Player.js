@@ -1,7 +1,7 @@
 import { Board, Ship } from './internal';
 
 export const Player = (() =>{
-    let turn = false;
+    let turn = true;
     function beginTurn(){ turn = true;}
     function endTurn(){ turn = false;}
 
@@ -20,10 +20,15 @@ export const Player = (() =>{
         playerBoard.placeShip(ship, randRot, randRow, randCol);
     }
 
+    // Player play turn
+    function play(row, col){
+        AI.AIBoard.attack(row, col);
+    }
 
     return {
         beginTurn,
         endTurn,
+        play,
         get turn(){return turn;},
         playerBoard
     }
@@ -65,19 +70,11 @@ export const AI = (() => {
     function play(){
         let tile = randTile();
         Player.playerBoard.attack(tile[0], tile[1]);
-        
-        // For testing
-        console.log(tile[0]+', '+tile[1]);
         return tile;
     }
 
-
-
     return {
-        //get AI(){return AI;},
         play,
         AIBoard
     }
 })();
-// Attack testing
-//AI.play();AI.play();AI.play();AI.play();AI.play();AI.play();AI.play();
